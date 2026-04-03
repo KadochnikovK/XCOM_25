@@ -17,8 +17,6 @@
     border-radius: 10pc;
     width: max-content;
 
-
-
     transition: 0.3s ease;
 
     &__text {
@@ -30,14 +28,27 @@
 
     &:hover {
         background: var(--color-white);
-         color: var(--color-main);
+        color: var(--color-main);
     }
 
     &:active {
         background: var(--color-grey);
-         color: var(--color-white);
+        color: var(--color-white);
     }
 
+    &--variant {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: var(--size-xs);
+        padding-inline: var(--size-xs);
 
+        &:hover {
+            background: var(--color-main);
+            color: var(--color-white);
+        }
 
+        &:active {
+            background: rgba(84, 104, 118, 0.2);
+            color: var(--color-white);
+        }
+    }
 }

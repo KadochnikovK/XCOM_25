@@ -10,10 +10,10 @@
     padding-top: var(--size-sm);
     padding-bottom: var(--size-sm);
 
-    @include md {
-        padding-top: initial;
-        padding-bottom: initial;
-    }
+    // @include md {
+    //     padding-top: initial;
+    //     padding-bottom: initial;
+    // }
 
     * {
         font-weight: 600;
