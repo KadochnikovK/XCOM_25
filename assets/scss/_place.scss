@@ -1,0 +1,26 @@
+.place {
+    margin-top: var(--size-md);
+    &__content {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: var(--size-md);
+        padding: var(--size-xxl) var(--size-xxs);
+        display: flex;
+        justify-content: center;
+        gap:var(--size-xxxs);
+
+    }
+
+    &__icon {
+        width: var(--size-sm);
+    }
+
+
+
+
+    &__title {
+        font-size: var(--size-md);
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: var(--size-xxs);
+    }
+}

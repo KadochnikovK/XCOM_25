@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     initForm("main-form");
+    initForm("main-form-mobile");
 
     function initForm(formId) {
         const form = document.getElementById(formId);
@@ -32,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
             errorElement.style.display = "block";
         }
 
-
         const phoneInput = form.querySelector('input[name="phone"]');
         if (phoneInput) {
             phoneInput.addEventListener('input', function (e) {
@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     e.target.value = '';
                     return;
                 }
-
 
                 let formattedValue = '+7';
 
@@ -62,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 e.target.value = formattedValue;
             });
         }
-
 
         const inputs = form.querySelectorAll("input, textarea");
         inputs.forEach((input) => {
@@ -90,7 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const type = field.type;
             const isRequired = field.hasAttribute('required');
 
-
             if (!isRequired && value === '') {
                 return true;
             }
@@ -102,13 +99,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 return true;
             }
-            console.log('value', value.length)
 
             if (isRequired && !value && value.length === 0) {
                 addError(field, "Это поле обязательно для заполнения");
                 return false;
             }
-
 
             switch (name) {
                 case "email":
@@ -137,7 +132,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                     break;
 
-                case "surname":
                 case "name":
                     if (value && !/^[а-яА-ЯёЁa-zA-Z\- ]+$/.test(value)) {
                         addError(field, "Допускаются только буквы и дефисы");
@@ -169,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 showModal(
                     "Регистрация прошла успешно",
-                    `Спасибо за регистрацию, ${formData.name} ${formData.surname}!\n\nВаши данные успешно отправлены. Мы свяжемся с вами в ближайшее время`,
+                    `Спасибо за регистрацию, ${formData.name}!\n\nВаши данные успешно отправлены. Мы свяжемся с вами в ближайшее время`,
                     "Хорошо"
                 );
 
@@ -179,25 +173,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
         function collectFormData(form) {
             return {
-                surname: form.elements.surname.value.trim(),
                 name: form.elements.name.value.trim(),
                 phone: form.elements.phone.value.trim(),
                 email: form.elements.email.value.trim(),
-                company: form.elements.company.value.trim(),
-                position: form.elements.position.value.trim(),
-                taxId: form.elements.taxId.value.trim(),
-                privacyPolicy: form.elements["privacy-policy"].checked,
+                company: form.elements.company ? form.elements.company.value.trim() : '',
+                taxId: form.elements.taxId ? form.elements.taxId.value.trim() : '',
             };
         }
 
-        // Очистка ошибок при вводе
         form.addEventListener("input", function (e) {
             if (e.target.tagName === "INPUT") {
                 const formItem = e.target.closest(".form__item");
-                formItem.classList.remove("form__item--not-valid");
-                const errorElement = formItem.querySelector(".error-message");
-                if (errorElement) {
-                    errorElement.style.display = "none";
+                if (formItem) {
+                    formItem.classList.remove("form__item--not-valid");
+                    const errorElement = formItem.querySelector(".error-message");
+                    if (errorElement) {
+                        errorElement.style.display = "none";
+                    }
                 }
             }
         });
@@ -206,10 +198,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (checkbox) {
             checkbox.addEventListener("change", function (e) {
                 const formItem = e.target.closest(".form__item");
-                formItem.classList.remove("form__item--not-valid");
-                const errorElement = formItem.querySelector(".error-message");
-                if (errorElement) {
-                    errorElement.style.display = "none";
+                if (formItem) {
+                    formItem.classList.remove("form__item--not-valid");
+                    const errorElement = formItem.querySelector(".error-message");
+                    if (errorElement) {
+                        errorElement.style.display = "none";
+                    }
                 }
             });
         }
@@ -240,7 +234,6 @@ document.addEventListener("DOMContentLoaded", function () {
             modalWindow.classList.remove("animate__fadeInUp", "animate__fadeOutDown");
             modalWindow.classList.add("animate__fadeInUp", 'modal__window--active');
             modal.classList.add("animate__fadeIn");
-
         }, 10);
 
         function closeModal() {
@@ -248,7 +241,6 @@ document.addEventListener("DOMContentLoaded", function () {
             modalWindow.classList.remove("animate__fadeInUp", 'modal__window--active');
             modalWindow.classList.add("animate__fadeOutDown");
             modal.classList.add("animate__fadeOut");
-
 
             setTimeout(() => {
                 modal.style.display = "none";
@@ -268,4 +260,24 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
+    const scrollButtons = document.querySelectorAll('.button');
+    const desktopForm = document.getElementById('registration-section');
+    const mobileForm = document.getElementById('registration-section-mobile');
+
+    scrollButtons.forEach(button => {
+        if (button.textContent.trim() === 'Зарегистрироваться') {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const isDesktop = window.innerWidth >= 992;
+                if (isDesktop && desktopForm) {
+                    desktopForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else if (mobileForm) {
+                    mobileForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else if (desktopForm) {
+                    desktopForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        }
+    });
 });

@@ -87,7 +87,8 @@
         color: var(--color-white);
 
         &:hover {
-            color: var(--color-regular) !important;
+            color: var(--color-white) !important;
+            background-color: var(--color-grey);
         }
     }
 }
