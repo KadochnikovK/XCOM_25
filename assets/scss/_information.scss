@@ -57,6 +57,12 @@
             box-shadow: inset 0 0 var(--size-xxxs) var(--size-xxxs) rgba(255, 255, 255, 0.2), 0 0 var(--size-xxxs) var(--size-xxxs) rgba(255, 255, 255, 0.2);
         }
 
+        &--program {
+            padding-inline: 0;
+            border: none;
+            padding-right: calc(var(--size-xl) - var(--size-sm));
+        }
+
         &::before {
             content: attr(data-title);
             position: absolute;

@@ -3,19 +3,26 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-md);
-
+    padding-left: var(--size-xl);
+    padding-right: var(--size-sm);
+    position: relative;
+    margin-left: 4px;
+    border-left: 2px solid var(--color-white);
 
     &__item {
         display: flex;
         flex-direction: column;
         gap: var(--size-sm);
 
-        
+
+
+
 
         &::before {
             content: "";
             position: absolute;
             left: 0;
+            // left: calc(var(--size-xl) * -1);
             width: 8px;
             height: 8px;
             border-radius: 10pc;
@@ -29,4 +36,47 @@
     &__title {
         font-weight: 800;
     }
+}
+
+.program-outer {
+    position: relative;
+    overflow-x: visible;
+}
+
+.program-scroll-wrapper {
+
+    
+
+    @include md {
+        max-height: 500px;
+    }
+
+
+    overflow-y: auto;
+    // overflow-x: visible;
+    padding-right: 8px;
+
+}
+
+.program-scroll-wrapper::-webkit-scrollbar {
+    width: 4px;
+}
+
+.program-scroll-wrapper::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 2px;
+}
+
+.program-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: #888888;
+    border-radius: 2px;
+}
+
+.program-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #555555;
+}
+
+.program-scroll-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: #888888 #e0e0e0;
 }

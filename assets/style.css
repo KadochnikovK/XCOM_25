@@ -1088,6 +1088,11 @@ summary {
   position: relative;
   box-shadow: inset 0 0 var(--size-xxxs) var(--size-xxxs) rgba(255, 255, 255, 0.2), 0 0 var(--size-xxxs) var(--size-xxxs) rgba(255, 255, 255, 0.2);
 }
+.information__item--program {
+  padding-inline: 0;
+  border: none;
+  padding-right: calc(var(--size-xl) - var(--size-sm));
+}
 .information__item::before {
   content: attr(data-title);
   position: absolute;
@@ -1128,6 +1133,11 @@ summary {
   display: flex;
   flex-direction: column;
   gap: var(--size-md);
+  padding-left: var(--size-xl);
+  padding-right: var(--size-sm);
+  position: relative;
+  margin-left: 4px;
+  border-left: 2px solid var(--color-white);
 }
 .program__item {
   display: flex;
@@ -1146,6 +1156,44 @@ summary {
 }
 .program__title {
   font-weight: 800;
+}
+
+.program-outer {
+  position: relative;
+  overflow-x: visible;
+}
+
+@media (min-width: 920px) {
+  .program-scroll-wrapper {
+    max-height: 500px;
+  }
+}
+.program-scroll-wrapper {
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.program-scroll-wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+
+.program-scroll-wrapper::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  border-radius: 2px;
+}
+
+.program-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #888888;
+  border-radius: 2px;
+}
+
+.program-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+.program-scroll-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: #888888 #e0e0e0;
 }
 
 .photos {
